@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 protocol ApiResource {
     associatedtype Model: Decodable
@@ -19,10 +20,9 @@ extension ApiResource {
         components.scheme = "https"
         components.host = "api.flickr.com"
         components.path = "/services/rest"
-        // NOTE:  per_page value is set to 26 because after setting nojsoncallback value to 1, flickrAPI returns 1 less photo for some reason.
         components.queryItems = [URLQueryItem(name: "api_key", value: flickrAPIKey),
                                  URLQueryItem(name: "format", value: "json"),
-                                 URLQueryItem(name: "per_page", value: "26"),
+                                 URLQueryItem(name: "per_page", value: "25"),
                                  URLQueryItem(name: "page", value: "1"),
                                  URLQueryItem(name: "nojsoncallback", value: "1")]
         components.queryItems?.append(contentsOf: parameters)
@@ -39,68 +39,39 @@ extension ApiResource {
     }
 }
 
-
-
-
-struct Resource<T> {
-    let url: URL
-    let parse: (Data) -> T?
+protocol NetworkRequest {
+    associatedtype Model
+    func load(withCompletion completion: @escaping (Model?) -> Void)
+    func decode(_ data: Data) -> Model?
 }
 
-final class Webservice {
-    func load<T>(resource: Resource<T>, completion: @escaping (Result<T>) -> Void) {
-        URLSession.shared.dataTask(with: resource.url) { (data, _, error) in
+extension NetworkRequest {
+    func load(_ url: URL, withCompletion completion: @escaping (Model?) -> Void) {
+        let configuration = URLSessionConfiguration.ephemeral
+        let session = URLSession(configuration: configuration, delegate: nil, delegateQueue: .main)
+        let task = session.dataTask(with: url) { (data, response, error) in
             if let error = error {
-                completion(.failure(error))
-                return
-            }
-            if let data = data {
-                let result = resource.parse(data)
-                completion(.success(result!))
+                print(error.localizedDescription) // todo
             } else {
-                completion(.failure(NetworkError.noData))
-                return
+                guard let data = data else { completion(nil); return }
+                completion(self.decode(data))
             }
-        }.resume()
-    }
-}
-
-struct NetworkManager {
-    static func request(_ requestType: RequestType, completion: @escaping (Result<Data>) -> Void) {
-        var components = URLComponents()
-        components.scheme = "https"
-        components.host = "api.flickr.com"
-        components.path = "/services/rest"
-        // NOTE:  per_page value is set to 26 because after setting nojsoncallback value to 1, flickrAPI returns 1 less photo for some reason.
-        components.queryItems = [URLQueryItem(name: "api_key", value: flickrAPIKey),
-                                 URLQueryItem(name: "format", value: "json"),
-                                 URLQueryItem(name: "per_page", value: "26"),
-                                 URLQueryItem(name: "page", value: "1"),
-                                 URLQueryItem(name: "nojsoncallback", value: "1")
-                                 ]
-        switch requestType {
-        case .search(let searchTerm):
-            components.queryItems?.append(URLQueryItem(name: "tags", value: searchTerm))
-            components.queryItems?.append(URLQueryItem(name: "method", value: "flickr.photos.search"))
         }
-        guard let url = components.url else { return }
-        var urlRequest = URLRequest(url: url)
-        urlRequest.httpMethod = "GET"
-        URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
-            if let error = error {
-                completion(.failure(error))
-                return
-            }
-            if let data = data {
-               completion(.success(data))
-            } else {
-                completion(.failure(NetworkError.noData))
-                return
-            }
-        }.resume()
+        task.resume()
     }
 }
 
-enum RequestType {
-    case search(String)
+class ImageRequest: NetworkRequest {
+    typealias Model = UIImage
+    func load(withCompletion completion: @escaping (Model?) -> Void) {
+        load(url, withCompletion: completion)
+    }
+    func decode(_ data: Data) -> UIImage? {
+        return UIImage(data: data)
+    }
+    
+    let url: URL
+    init(url: URL) {
+        self.url = url
+    }
 }

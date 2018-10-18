@@ -9,29 +9,17 @@
 import UIKit
 
 class ViewController: UIViewController {
+    
+    fileprivate var request: AnyObject?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        
-        let searchRequest = RequestType.search("dog")
-        NetworkManager.request(searchRequest) { (result) in
-            switch result {
-            case .success(let data):
-                do {
-                    let photos = try JSONDecoder().decode(Photos.self, from: data)
-                    print(photos)
-                } catch {
-                    print(error.localizedDescription)
-                }
-            case .failure(let error):
-                print(error.localizedDescription)
-            }
+        let photosResource = PhotosResource(searchTerm: "dog")
+        let photosRequest = ApiRequest(resource: photosResource)
+        request = photosRequest
+        photosRequest.load { (photos) in
+            print(photos)
         }
-        
-    //    let photosResource = Photos
-//        Webservice().load(resource: <#T##Resource<T>#>) { (<#Result<T>#>) in
-//            <#code#>
-//        }
     }
 }
 
