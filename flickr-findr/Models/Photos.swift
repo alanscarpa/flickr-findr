@@ -5,8 +5,19 @@
 //  Created by Alan Scarpa on 10/17/18.
 //  Copyright © 2018 alanscarpa. All rights reserved.
 //
+import Foundation
 
-struct Photos: Decodable {
+protocol ApiResource: Decodable {
+    var url: URL { get }
+}
+
+extension Photos {
+    
+}
+struct Photos: ApiResource {
+    // TODO: use a component builder
+    var url: URL = URL(string: "https://api.flickr.com/services/rest?api_key=1508443e49213ff84d566777dc211f2a&method=flickr.photos.search&format=json&per_page=26&page=1&tags=dog&nojsoncallback=1")!
+    
     let page: Int
     let pages: Int
     let photo: [Photo]

@@ -8,6 +8,29 @@
 
 import Foundation
 
+struct Resource<T> {
+    let url: URL
+    let parse: (Data) -> T?
+}
+
+final class Webservice {
+    func load<T>(resource: Resource<T>, completion: @escaping (Result<T>) -> Void) {
+        URLSession.shared.dataTask(with: resource.url) { (data, _, error) in
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+            if let data = data {
+                let result = resource.parse(data)
+                completion(.success(result!))
+            } else {
+                completion(.failure(NetworkError.noData))
+                return
+            }
+        }.resume()
+    }
+}
+
 struct NetworkManager {
     static func request(_ requestType: RequestType, completion: @escaping (Result<Data>) -> Void) {
         var components = URLComponents()
@@ -35,13 +58,12 @@ struct NetworkManager {
                 return
             }
             if let data = data {
-                let photos = try? JSONDecoder().decode(Photos.self, from: data)
-                completion(.success(data))
+               completion(.success(data))
             } else {
                 completion(.failure(NetworkError.noData))
                 return
             }
-            }.resume()
+        }.resume()
     }
 }
 

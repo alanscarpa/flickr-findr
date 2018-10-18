@@ -11,25 +11,27 @@ import UIKit
 class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        GetPhotos(forSearchTerm: "dog").execute(dispatcher: URLSessionNetworkDispatcher()) { (result) in
-//            print(result)
-//        }
+
         
         let searchRequest = RequestType.search("dog")
         NetworkManager.request(searchRequest) { (result) in
             switch result {
             case .success(let data):
-                print(data)
+                do {
+                    let photos = try JSONDecoder().decode(Photos.self, from: data)
+                    print(photos)
+                } catch {
+                    print(error.localizedDescription)
+                }
             case .failure(let error):
                 print(error.localizedDescription)
             }
         }
-        // NetworkManager.request(searchRequest) {
-                // succes
-                // update images and reload
-                // failure - notify user
-        // }
+        
+        let photosResource = Photos
+//        Webservice().load(resource: <#T##Resource<T>#>) { (<#Result<T>#>) in
+//            <#code#>
+//        }
     }
 }
 
