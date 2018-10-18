@@ -14,9 +14,10 @@ struct NetworkManager {
         components.scheme = "https"
         components.host = "api.flickr.com"
         components.path = "/services/rest"
+        // NOTE:  per_page value is set to 26 because after setting nojsoncallback value to 1, flickrAPI returns 1 less photo for some reason.
         components.queryItems = [URLQueryItem(name: "api_key", value: flickrAPIKey),
                                  URLQueryItem(name: "format", value: "json"),
-                                 URLQueryItem(name: "per_page", value: "25"),
+                                 URLQueryItem(name: "per_page", value: "26"),
                                  URLQueryItem(name: "page", value: "1"),
                                  URLQueryItem(name: "nojsoncallback", value: "1")
                                  ]
@@ -34,7 +35,7 @@ struct NetworkManager {
                 return
             }
             if let data = data {
-                let photos = try! JSONDecoder().decode(Photos.self, from: data)
+                let photos = try? JSONDecoder().decode(Photos.self, from: data)
                 completion(.success(data))
             } else {
                 completion(.failure(NetworkError.noData))
