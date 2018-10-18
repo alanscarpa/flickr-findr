@@ -6,28 +6,34 @@
 //  Copyright © 2018 alanscarpa. All rights reserved.
 //
 
-struct Photo: Decodable {
-    var id = ""
-    var title = ""
+struct Photos: Decodable {
+    let page: Int
+    let pages: Int
+    let photo: [Photo]
     
     enum CodingKeys: String, CodingKey {
-        case id = "id"
-        case title = "title"
-        case photos = "photos"
-        case photo = "photo"
-    }
-    
-    init(id: String, title: String) {
-        self.id = id
-        self.title = title
+        case photos
+        case page
+        case pages
+        case photo
     }
     
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         let photos = try container.nestedContainer(keyedBy: CodingKeys.self, forKey: .photos)
-        let photo = try photos.nestedContainer(keyedBy: CodingKeys.self, forKey: .photo)
-        id = try photo.decode(String.self, forKey: .id)
-        title = try photo.decode(String.self, forKey: .title)
+        page = try photos.decode(Int.self, forKey: .page)
+        pages = try photos.decode(Int.self, forKey: .pages)
+        var photoObjectsArray = try photos.nestedUnkeyedContainer(forKey: .photo)
+        var photoObjects = [Photo]()
+        while !photoObjectsArray.isAtEnd {
+            try photoObjects.append(photoObjectsArray.decode(Photo.self))
+        }
+        photo = photoObjects
     }
+}
+
+struct Photo: Codable {
+    let id: String
+    let title: String
 }
 

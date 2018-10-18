@@ -18,10 +18,11 @@ struct NetworkManager {
                                  URLQueryItem(name: "format", value: "json"),
                                  URLQueryItem(name: "per_page", value: "25"),
                                  URLQueryItem(name: "page", value: "1"),
+                                 URLQueryItem(name: "nojsoncallback", value: "1")
                                  ]
         switch requestType {
         case .search(let searchTerm):
-            components.queryItems?.append(URLQueryItem(name: "text", value: searchTerm))
+            components.queryItems?.append(URLQueryItem(name: "tags", value: searchTerm))
             components.queryItems?.append(URLQueryItem(name: "method", value: "flickr.photos.search"))
         }
         guard let url = components.url else { return }
@@ -33,8 +34,7 @@ struct NetworkManager {
                 return
             }
             if let data = data {
-                let photos = try? JSONDecoder().decode([Photo].self, from: data)
-                print(photos)
+                let photos = try! JSONDecoder().decode(Photos.self, from: data)
                 completion(.success(data))
             } else {
                 completion(.failure(NetworkError.noData))
