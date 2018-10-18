@@ -17,6 +17,7 @@
 		45C8E396217818200035F7F0 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C8E395217818200035F7F0 /* Photo.swift */; };
 		45CE238121781F3600C3C10E /* NetworkDispatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45CE238021781F3600C3C10E /* NetworkDispatcher.swift */; };
 		45CE23842178242900C3C10E /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45CE23832178242900C3C10E /* Result.swift */; };
+		45CE238621782F1600C3C10E /* APIKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45CE238521782F1600C3C10E /* APIKeys.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +45,7 @@
 		45C8E395217818200035F7F0 /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		45CE238021781F3600C3C10E /* NetworkDispatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDispatcher.swift; sourceTree = "<group>"; };
 		45CE23832178242900C3C10E /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
+		45CE238521782F1600C3C10E /* APIKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKeys.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +92,7 @@
 				45C8E391217815680035F7F0 /* Networking */,
 				45CE23822178242000C3C10E /* Utilities */,
 				45C8E3732177FBD70035F7F0 /* ViewController.swift */,
+				45CE238521782F1600C3C10E /* APIKeys.swift */,
 				45C8E3752177FBD70035F7F0 /* Main.storyboard */,
 				45C8E3782177FBDA0035F7F0 /* Assets.xcassets */,
 				45C8E37A2177FBDA0035F7F0 /* LaunchScreen.storyboard */,
@@ -235,6 +238,7 @@
 			files = (
 				45CE23842178242900C3C10E /* Result.swift in Sources */,
 				45C8E396217818200035F7F0 /* Photo.swift in Sources */,
+				45CE238621782F1600C3C10E /* APIKeys.swift in Sources */,
 				45C8E3742177FBD70035F7F0 /* ViewController.swift in Sources */,
 				45C8E393217815AE0035F7F0 /* Request.swift in Sources */,
 				45CE238121781F3600C3C10E /* NetworkDispatcher.swift in Sources */,
