@@ -8,6 +8,40 @@
 
 import Foundation
 
+protocol ApiResource {
+    associatedtype Model: Decodable
+    var parameters: [URLQueryItem] { get }
+}
+
+extension ApiResource {
+    var url: URL {
+        var components = URLComponents()
+        components.scheme = "https"
+        components.host = "api.flickr.com"
+        components.path = "/services/rest"
+        // NOTE:  per_page value is set to 26 because after setting nojsoncallback value to 1, flickrAPI returns 1 less photo for some reason.
+        components.queryItems = [URLQueryItem(name: "api_key", value: flickrAPIKey),
+                                 URLQueryItem(name: "format", value: "json"),
+                                 URLQueryItem(name: "per_page", value: "26"),
+                                 URLQueryItem(name: "page", value: "1"),
+                                 URLQueryItem(name: "nojsoncallback", value: "1")]
+        components.queryItems?.append(contentsOf: parameters)
+        return components.url!
+    }
+    
+    func makeModel(data: Data) -> Model? {
+        do {
+            return try JSONDecoder().decode(Model.self, from: data)
+        } catch {
+            print(error.localizedDescription)
+            return nil
+        }
+    }
+}
+
+
+
+
 struct Resource<T> {
     let url: URL
     let parse: (Data) -> T?

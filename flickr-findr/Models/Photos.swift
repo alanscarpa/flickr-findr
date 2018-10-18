@@ -7,17 +7,7 @@
 //
 import Foundation
 
-protocol ApiResource: Decodable {
-    var url: URL { get }
-}
-
-extension Photos {
-    
-}
-struct Photos: ApiResource {
-    // TODO: use a component builder
-    var url: URL = URL(string: "https://api.flickr.com/services/rest?api_key=1508443e49213ff84d566777dc211f2a&method=flickr.photos.search&format=json&per_page=26&page=1&tags=dog&nojsoncallback=1")!
-    
+struct Photos: Decodable {
     let page: Int
     let pages: Int
     let photo: [Photo]
@@ -42,9 +32,3 @@ struct Photos: ApiResource {
         photo = photoObjects
     }
 }
-
-struct Photo: Codable {
-    let id: String
-    let title: String
-}
-

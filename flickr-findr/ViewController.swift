@@ -28,7 +28,7 @@ class ViewController: UIViewController {
             }
         }
         
-        let photosResource = Photos
+    //    let photosResource = Photos
 //        Webservice().load(resource: <#T##Resource<T>#>) { (<#Result<T>#>) in
 //            <#code#>
 //        }
