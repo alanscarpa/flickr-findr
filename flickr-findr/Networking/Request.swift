@@ -10,7 +10,7 @@ import Foundation
 
 
 
-struct GetPhotos: RequestType {
+struct GetPhotos: RequestTypee {
     typealias ResponseType = [Photo]
     private var searchTerm = ""
     private var page = 1
@@ -55,12 +55,12 @@ struct RequestData {
     }
 }
 
-protocol RequestType {
+protocol RequestTypee {
     associatedtype ResponseType: Codable
     var data: RequestData { get }
 }
 
-extension RequestType {
+extension RequestTypee {
     func execute(dispatcher: NetworkDispatcher, completion: @escaping (Result<ResponseType>) -> Void) {
         dispatcher.dispatch(request: data) { (result) in
             switch result {

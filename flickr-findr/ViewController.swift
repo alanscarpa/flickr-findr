@@ -8,9 +8,7 @@
 
 import UIKit
 
-
 class ViewController: UIViewController {
-
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -18,9 +16,21 @@ class ViewController: UIViewController {
 //            print(result)
 //        }
         
-        // NetworkManager.request
+        let searchRequest = RequestType.search("dog")
+        NetworkManager.request(searchRequest) { (result) in
+            switch result {
+            case .success(let data):
+                print(data)
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+        // NetworkManager.request(searchRequest) {
+                // succes
+                // update images and reload
+                // failure - notify user
+        // }
     }
-
-
 }
+
 
