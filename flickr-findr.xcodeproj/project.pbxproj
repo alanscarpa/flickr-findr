@@ -13,6 +13,8 @@
 		45C8E3792177FBDA0035F7F0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 45C8E3782177FBDA0035F7F0 /* Assets.xcassets */; };
 		45C8E37C2177FBDA0035F7F0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45C8E37A2177FBDA0035F7F0 /* LaunchScreen.storyboard */; };
 		45C8E3872177FBDA0035F7F0 /* flickr_findrTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C8E3862177FBDA0035F7F0 /* flickr_findrTests.swift */; };
+		45C8E393217815AE0035F7F0 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C8E392217815AE0035F7F0 /* Request.swift */; };
+		45C8E396217818200035F7F0 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C8E395217818200035F7F0 /* Photo.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +38,8 @@
 		45C8E3822177FBDA0035F7F0 /* flickr-findrTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "flickr-findrTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		45C8E3862177FBDA0035F7F0 /* flickr_findrTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = flickr_findrTests.swift; sourceTree = "<group>"; };
 		45C8E3882177FBDA0035F7F0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		45C8E392217815AE0035F7F0 /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
+		45C8E395217818200035F7F0 /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +82,8 @@
 			isa = PBXGroup;
 			children = (
 				45C8E3712177FBD70035F7F0 /* AppDelegate.swift */,
+				45C8E3942178180E0035F7F0 /* Models */,
+				45C8E391217815680035F7F0 /* Networking */,
 				45C8E3732177FBD70035F7F0 /* ViewController.swift */,
 				45C8E3752177FBD70035F7F0 /* Main.storyboard */,
 				45C8E3782177FBDA0035F7F0 /* Assets.xcassets */,
@@ -94,6 +100,22 @@
 				45C8E3882177FBDA0035F7F0 /* Info.plist */,
 			);
 			path = "flickr-findrTests";
+			sourceTree = "<group>";
+		};
+		45C8E391217815680035F7F0 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				45C8E392217815AE0035F7F0 /* Request.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		45C8E3942178180E0035F7F0 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				45C8E395217818200035F7F0 /* Photo.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -197,7 +219,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				45C8E396217818200035F7F0 /* Photo.swift in Sources */,
 				45C8E3742177FBD70035F7F0 /* ViewController.swift in Sources */,
+				45C8E393217815AE0035F7F0 /* Request.swift in Sources */,
 				45C8E3722177FBD70035F7F0 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
