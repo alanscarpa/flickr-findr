@@ -8,11 +8,17 @@
 
 import UIKit
 
+
 class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+//        GetPhotos(forSearchTerm: "dog").execute(dispatcher: URLSessionNetworkDispatcher()) { (result) in
+//            print(result)
+//        }
+        
+        // NetworkManager.request
     }
 
 

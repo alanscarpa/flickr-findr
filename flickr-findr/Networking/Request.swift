@@ -7,14 +7,27 @@
 //
 import Foundation
 
+
+
+
 struct GetPhotos: RequestType {
     typealias ResponseType = [Photo]
     private var searchTerm = ""
-    init(forSearchTerm searchTerm: String) {
+    private var page = 1
+    init(forSearchTerm searchTerm: String, page: Int = 1) {
         self.searchTerm = searchTerm
+        self.page = page
     }
     var data: RequestData {
-        return RequestData(path: "string", method: .get, headers: [], parameters: ["api_key" = ""])
+        return RequestData(path: "https://api.flickr.com/services/rest/",
+                           method: .get,
+                           headers: [:],
+                           parameters: ["method": "flickr.photos.search",
+                                        "api_key": flickrAPIKey,
+                                        "format" : "json",
+                                        "per_page": 25,
+                                        "page" : page,
+                                        "text": searchTerm])
     }
 }
 

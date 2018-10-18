@@ -92,7 +92,6 @@
 				45C8E391217815680035F7F0 /* Networking */,
 				45CE23822178242000C3C10E /* Utilities */,
 				45C8E3732177FBD70035F7F0 /* ViewController.swift */,
-				45CE238521782F1600C3C10E /* APIKeys.swift */,
 				45C8E3752177FBD70035F7F0 /* Main.storyboard */,
 				45C8E3782177FBDA0035F7F0 /* Assets.xcassets */,
 				45C8E37A2177FBDA0035F7F0 /* LaunchScreen.storyboard */,
@@ -131,6 +130,7 @@
 			isa = PBXGroup;
 			children = (
 				45CE23832178242900C3C10E /* Result.swift */,
+				45CE238521782F1600C3C10E /* APIKeys.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
