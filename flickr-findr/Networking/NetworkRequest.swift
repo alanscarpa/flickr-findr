@@ -16,7 +16,7 @@ protocol NetworkRequest {
 }
 
 extension NetworkRequest {
-    func load(_ url: URL, withCompletion completion: @escaping (Model?) -> Void) {
+    fileprivate func load(_ url: URL, withCompletion completion: @escaping (Model?) -> Void) {
         let configuration = URLSessionConfiguration.ephemeral
         let session = URLSession(configuration: configuration, delegate: nil, delegateQueue: .main)
         let task = session.dataTask(with: url) { (data, response, error) in
@@ -31,18 +31,24 @@ extension NetworkRequest {
     }
 }
 
-// TODO: remove
-//class ImageRequest: NetworkRequest {
-//    typealias Model = UIImage
-//    func load(withCompletion completion: @escaping (Model?) -> Void) {
-//        load(url, withCompletion: completion)
-//    }
-//    func decode(_ data: Data) -> UIImage? {
-//        return UIImage(data: data)
-//    }
-//
-//    let url: URL
-//    init(url: URL) {
-//        self.url = url
-//    }
-//}
+extension ApiRequest: NetworkRequest {
+    typealias Model = Resource.Model
+    func load(withCompletion completion: @escaping (Resource.Model?) -> Void) {
+        load(resource.url, withCompletion: completion)
+    }
+    
+    func decode(_ data: Data) -> Resource.Model? {
+        return resource.makeModel(data: data)
+    }
+}
+
+extension ImageRequest: NetworkRequest {
+    typealias Model = UIImage
+    func load(withCompletion completion: @escaping (UIImage?) -> Void) {
+        load(url, withCompletion: completion)
+    }
+    
+    func decode(_ data: Data) -> UIImage? {
+        return UIImage(data: data)
+    }
+}

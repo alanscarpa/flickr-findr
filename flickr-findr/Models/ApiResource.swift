@@ -21,8 +21,6 @@ extension ApiResource {
         components.path = "/services/rest"
         components.queryItems = [URLQueryItem(name: "api_key", value: flickrAPIKey),
                                  URLQueryItem(name: "format", value: "json"),
-                                 URLQueryItem(name: "per_page", value: "25"),
-                                 URLQueryItem(name: "page", value: "1"),
                                  URLQueryItem(name: "nojsoncallback", value: "1")]
         components.queryItems?.append(contentsOf: parameters)
         return components.url!

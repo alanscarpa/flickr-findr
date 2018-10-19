@@ -8,16 +8,19 @@
 
 import Foundation
 
-struct PhotosResource: ApiResource {
-    // ApiResource Protocol
+struct PhotosResource {
+    let searchTerm: String
+    init(searchTerm: String) {
+        self.searchTerm = searchTerm
+    }
+}
+
+extension PhotosResource: ApiResource {
     typealias Model = Photos
     var parameters: [URLQueryItem] {
         return [URLQueryItem(name: "tags", value: searchTerm),
-                URLQueryItem(name: "method", value: "flickr.photos.search")]
-    } 
-    let searchTerm: String
-    
-    init(searchTerm: String) {
-        self.searchTerm = searchTerm
+                URLQueryItem(name: "method", value: "flickr.photos.search"),
+                URLQueryItem(name: "per_page", value: "25"),
+                URLQueryItem(name: "page", value: "1")]
     }
 }
