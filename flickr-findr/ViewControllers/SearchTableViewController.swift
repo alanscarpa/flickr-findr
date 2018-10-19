@@ -58,6 +58,7 @@ class SearchTableViewController: UITableViewController, UISearchBarDelegate {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let photo = photos?[indexPath.row] else { return }
+        searchBar.resignFirstResponder()
         navigationController?.pushViewController(PhotoViewController(photo), animated: true)
     }
     
