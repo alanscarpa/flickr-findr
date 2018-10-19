@@ -12,6 +12,7 @@ import UIKit
 class NetworkRequest {
     var dataTask: URLSessionDataTask?
     func cancel() {
+        guard dataTask?.state != .completed else { return }
         dataTask?.cancel()
     }
 }
