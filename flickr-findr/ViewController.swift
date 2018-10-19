@@ -10,13 +10,10 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    fileprivate var request: AnyObject?
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         let photosResource = PhotosResource(searchTerm: "dog")
         let photosRequest = ApiRequest(resource: photosResource)
-        request = photosRequest
         photosRequest.load { (photos) in
             print(photos)
         }

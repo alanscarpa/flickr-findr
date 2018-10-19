@@ -9,4 +9,7 @@
 struct Photo: Codable {
     let id: String
     let title: String
+    let farm: Int
+    let server: String
+    let secret: String
 }
