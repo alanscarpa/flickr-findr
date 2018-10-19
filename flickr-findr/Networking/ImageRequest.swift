@@ -8,7 +8,7 @@
 
 import UIKit
 
-struct ImageRequest {
+class ImageRequest: NetworkRequest {
     let url: URL
     init(url: URL) {
         self.url = url

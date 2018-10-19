@@ -28,7 +28,7 @@ class SearchResultTableViewCell: UITableViewCell, FFTableViewCell {
     
     override func prepareForReuse() {
         photoImageView.image = nil
-       // imageRequest.can
+        imageRequest?.cancel()
     }
     
     func updateUI() {

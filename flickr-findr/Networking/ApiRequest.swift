@@ -6,7 +6,7 @@
 //  Copyright © 2018 alanscarpa. All rights reserved.
 //
 
-struct ApiRequest<Resource: ApiResource> {
+class ApiRequest<Resource: ApiResource>: NetworkRequest {
     let resource: Resource
     init(resource: Resource) {
         self.resource = resource

@@ -11,14 +11,22 @@ import UIKit
 
 // todo: add cancel functionality
 
+class NetworkRequest {
+    var dataTask: URLSessionDataTask?
+    func cancel() {
+        dataTask?.cancel()
+    }
+}
+
 protocol NetworkRequestProtocol {
     associatedtype Object
     func load(withCompletion completion: @escaping (Object?) -> Void)
     func decode(_ data: Data) -> Object?
+    func cancel()
 }
 
 extension NetworkRequestProtocol {
-    fileprivate func load(_ url: URL, withCompletion completion: @escaping (Object?) -> Void) {
+    fileprivate func load(_ url: URL, withCompletion completion: @escaping (Object?) -> Void) -> URLSessionDataTask {
         let configuration = URLSessionConfiguration.default
         let session = URLSession(configuration: configuration, delegate: nil, delegateQueue: .main)
         let task = session.dataTask(with: url) { (data, response, error) in
@@ -30,12 +38,13 @@ extension NetworkRequestProtocol {
             }
         }
         task.resume()
+        return task
     }
 }
 
 extension ApiRequest: NetworkRequestProtocol {
     func load(withCompletion completion: @escaping (Resource.Model?) -> Void) {
-        load(resource.url, withCompletion: completion)
+        dataTask = load(resource.url, withCompletion: completion)
     }
     
     func decode(_ data: Data) -> Resource.Model? {
@@ -45,7 +54,7 @@ extension ApiRequest: NetworkRequestProtocol {
 
 extension ImageRequest: NetworkRequestProtocol {
     func load(withCompletion completion: @escaping (UIImage?) -> Void) {
-        load(url, withCompletion: completion)
+        dataTask = load(url, withCompletion: completion)
     }
     
     func decode(_ data: Data) -> UIImage? {
