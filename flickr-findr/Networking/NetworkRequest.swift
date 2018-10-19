@@ -11,15 +11,15 @@ import UIKit
 
 // todo: add cancel functionality
 
-protocol NetworkRequest {
+protocol NetworkRequestProtocol {
     associatedtype Object
     func load(withCompletion completion: @escaping (Object?) -> Void)
     func decode(_ data: Data) -> Object?
 }
 
-extension NetworkRequest {
+extension NetworkRequestProtocol {
     fileprivate func load(_ url: URL, withCompletion completion: @escaping (Object?) -> Void) {
-        let configuration = URLSessionConfiguration.ephemeral
+        let configuration = URLSessionConfiguration.default
         let session = URLSession(configuration: configuration, delegate: nil, delegateQueue: .main)
         let task = session.dataTask(with: url) { (data, response, error) in
             if let error = error {
@@ -33,7 +33,7 @@ extension NetworkRequest {
     }
 }
 
-extension ApiRequest: NetworkRequest {
+extension ApiRequest: NetworkRequestProtocol {
     func load(withCompletion completion: @escaping (Resource.Model?) -> Void) {
         load(resource.url, withCompletion: completion)
     }
@@ -43,7 +43,7 @@ extension ApiRequest: NetworkRequest {
     }
 }
 
-extension ImageRequest: NetworkRequest {
+extension ImageRequest: NetworkRequestProtocol {
     func load(withCompletion completion: @escaping (UIImage?) -> Void) {
         load(url, withCompletion: completion)
     }

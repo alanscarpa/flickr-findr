@@ -24,6 +24,12 @@ class SearchResultTableViewCell: UITableViewCell, FFTableViewCell {
             updateUI()
         }
     }
+    var imageRequest: ImageRequest?
+    
+    override func prepareForReuse() {
+        photoImageView.image = nil
+       // imageRequest.can
+    }
     
     func updateUI() {
         // todo: this could be more concise
@@ -33,11 +39,9 @@ class SearchResultTableViewCell: UITableViewCell, FFTableViewCell {
             titleLabel.text = "Untitled"
         }
         if let url = photo?.url {
-            let imageRequest = ImageRequest(url: url)
-            imageRequest.load { [weak self] image in
-                DispatchQueue.main.async {
-                    self?.photoImageView?.image = image
-                }
+            imageRequest = ImageRequest(url: url)
+            imageRequest?.load { [weak self] image in
+                self?.photoImageView?.image = image
             }
         }
     }
