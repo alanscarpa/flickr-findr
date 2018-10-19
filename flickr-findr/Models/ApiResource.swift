@@ -11,6 +11,7 @@ import Foundation
 protocol ApiResource {
     associatedtype Model: Decodable
     var parameters: [URLQueryItem] { get }
+    func makeModel(data: Data) -> Model?
 }
 
 extension ApiResource {

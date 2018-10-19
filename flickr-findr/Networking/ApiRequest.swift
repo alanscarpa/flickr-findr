@@ -6,8 +6,6 @@
 //  Copyright © 2018 alanscarpa. All rights reserved.
 //
 
-import Foundation
-
 struct ApiRequest<Resource: ApiResource> {
     let resource: Resource
     init(resource: Resource) {

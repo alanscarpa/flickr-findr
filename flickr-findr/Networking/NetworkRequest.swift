@@ -10,13 +10,13 @@ import Foundation
 import UIKit
 
 protocol NetworkRequest {
-    associatedtype Model
-    func load(withCompletion completion: @escaping (Model?) -> Void)
-    func decode(_ data: Data) -> Model?
+    associatedtype Object
+    func load(withCompletion completion: @escaping (Object?) -> Void)
+    func decode(_ data: Data) -> Object?
 }
 
 extension NetworkRequest {
-    fileprivate func load(_ url: URL, withCompletion completion: @escaping (Model?) -> Void) {
+    fileprivate func load(_ url: URL, withCompletion completion: @escaping (Object?) -> Void) {
         let configuration = URLSessionConfiguration.ephemeral
         let session = URLSession(configuration: configuration, delegate: nil, delegateQueue: .main)
         let task = session.dataTask(with: url) { (data, response, error) in
@@ -32,7 +32,6 @@ extension NetworkRequest {
 }
 
 extension ApiRequest: NetworkRequest {
-    typealias Model = Resource.Model
     func load(withCompletion completion: @escaping (Resource.Model?) -> Void) {
         load(resource.url, withCompletion: completion)
     }
@@ -43,7 +42,6 @@ extension ApiRequest: NetworkRequest {
 }
 
 extension ImageRequest: NetworkRequest {
-    typealias Model = UIImage
     func load(withCompletion completion: @escaping (UIImage?) -> Void) {
         load(url, withCompletion: completion)
     }
