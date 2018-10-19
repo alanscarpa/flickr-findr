@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SearchTableViewController: UITableViewController {
+class SearchTableViewController: UITableViewController, UISearchBarDelegate {
     
     private var photosContainer: PhotosContainer?
     private let tableViewReuseIdentifier = SearchResultTableViewCell.nibName
@@ -16,15 +16,12 @@ class SearchTableViewController: UITableViewController {
         return photosContainer?.photos
     }
     
+    @IBOutlet weak var searchBar: UISearchBar!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpTableView()
-        let photosResource = PhotosResource(searchTerm: "dog")
-        let photosRequest = ApiRequest(resource: photosResource)
-        photosRequest.load { [weak self] photosContainer in
-            self?.photosContainer = photosContainer
-            self?.tableView.reloadData()
-        }
+        setUpSearchBar()
     }
     
     // MARK: - Setup
@@ -32,6 +29,19 @@ class SearchTableViewController: UITableViewController {
     private func setUpTableView() {
         tableView.register(UINib(nibName: tableViewReuseIdentifier, bundle: nil), forCellReuseIdentifier: tableViewReuseIdentifier)
         tableView.rowHeight = 100
+    }
+    
+    private func setUpSearchBar() {
+        searchBar.searchBarStyle = .minimal
+        searchBar.tintColor = .gray
+        searchBar.backgroundColor  = .black
+        searchBar.placeholder = "Search for photos!"
+        let textFieldInsideSearchBar = searchBar.value(forKey: "searchField") as? UITextField
+        textFieldInsideSearchBar?.textColor = .white
+        searchBar.delegate = self
+        // searchController.searchResultsUpdater = self
+        // searchController.dimsBackgroundDuringPresentation = false
+        // searchController.hidesNavigationBarDuringPresentation = false
     }
 
     // MARK: - Table view data source
@@ -44,6 +54,22 @@ class SearchTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: tableViewReuseIdentifier, for: indexPath) as! SearchResultTableViewCell
         cell.photo = photos?[indexPath.row]
         return cell
+    }
+    
+    // MARK: - UISearchBarDelegate
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        guard let searchQuery = searchBar.text else { return }
+        search(withQuery: searchQuery)
+    }
+    
+    private func search(withQuery searchQuery: String) {
+        let photosResource = PhotosResource(searchTerm: searchQuery)
+        let photosRequest = ApiRequest(resource: photosResource)
+        photosRequest.load { [weak self] photosContainer in
+            self?.photosContainer = photosContainer
+            self?.tableView.reloadData()
+        }
     }
  
 

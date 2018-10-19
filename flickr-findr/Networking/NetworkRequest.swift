@@ -9,8 +9,6 @@
 import Foundation
 import UIKit
 
-// todo: add cancel functionality
-
 class NetworkRequest {
     var dataTask: URLSessionDataTask?
     func cancel() {
