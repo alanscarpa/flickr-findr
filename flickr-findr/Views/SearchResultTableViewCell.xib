@@ -18,7 +18,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="394" height="99.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jkb-Hy-TOm">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jkb-Hy-TOm">
                         <rect key="frame" x="12" y="12" width="80" height="74"/>
                         <color key="backgroundColor" red="0.76594452359999998" green="0.75044173680000004" blue="0.7955927652" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>

@@ -9,6 +9,8 @@
 import Foundation
 import UIKit
 
+// todo: add cancel functionality
+
 protocol NetworkRequest {
     associatedtype Object
     func load(withCompletion completion: @escaping (Object?) -> Void)

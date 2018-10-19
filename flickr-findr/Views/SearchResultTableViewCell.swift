@@ -32,5 +32,13 @@ class SearchResultTableViewCell: UITableViewCell, FFTableViewCell {
         } else {
             titleLabel.text = "Untitled"
         }
+        if let url = photo?.url {
+            let imageRequest = ImageRequest(url: url)
+            imageRequest.load { [weak self] image in
+                DispatchQueue.main.async {
+                    self?.photoImageView?.image = image
+                }
+            }
+        }
     }
 }
