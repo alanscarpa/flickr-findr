@@ -30,7 +30,12 @@ extension NetworkRequestProtocol {
         let session = URLSession(configuration: configuration, delegate: nil, delegateQueue: .main)
         let task = session.dataTask(with: url) { (data, response, error) in
             if let error = error {
-                print(error.localizedDescription) // todo
+                // todo: make neater
+                if (error as NSError).code == -999 {
+                    // no-op.  This is called when we cancel a task.
+                } else {
+                    print(error.localizedDescription)
+                }
             } else {
                 guard let data = data else { completion(nil); return }
                 completion(self.decode(data))
