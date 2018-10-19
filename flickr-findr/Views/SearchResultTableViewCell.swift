@@ -39,10 +39,18 @@ class SearchResultTableViewCell: UITableViewCell, FFTableViewCell {
             titleLabel.text = "Untitled"
         }
         if let url = photo?.url {
-            imageRequest = ImageRequest(url: url)
-            imageRequest?.load { [weak self] image in
-                self?.photoImageView?.image = image
+            if let downloadedImage = ImageCache.shared.image(fromURL: url) {
+                photoImageView.image = downloadedImage
+            } else {
+                imageRequest = ImageRequest(url: url)
+                imageRequest?.load { [weak self] image in
+                    guard let image = image else { return }
+                    ImageCache.shared.put(image: image, withURL: url)
+                    self?.photoImageView?.image = image
+                }
             }
+        } else {
+            photoImageView.image = nil
         }
     }
 }
