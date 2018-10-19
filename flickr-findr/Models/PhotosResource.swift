@@ -16,7 +16,7 @@ struct PhotosResource {
 }
 
 extension PhotosResource: ApiResource {
-    typealias Model = Photos
+    typealias Model = PhotosContainer
     var parameters: [URLQueryItem] {
         return [URLQueryItem(name: "tags", value: searchTerm),
                 URLQueryItem(name: "method", value: "flickr.photos.search"),
