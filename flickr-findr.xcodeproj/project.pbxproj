@@ -10,6 +10,8 @@
 		07FE68D43AD6A1AEE7649B95 /* Pods_flickr_findrTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D86DB3271690BBF4A380A7D /* Pods_flickr_findrTests.framework */; };
 		0EAEF8D32FAA2053F96A08F1 /* Pods_flickr_findr.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 772585DD321FF46C76A35B13 /* Pods_flickr_findr.framework */; };
 		450BDA18217B7636008BB2FD /* DataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450BDA17217B7636008BB2FD /* DataTests.swift */; };
+		450BDA1A217B7F5D008BB2FD /* NetworkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450BDA19217B7F5D008BB2FD /* NetworkTests.swift */; };
+		450BDA1D217BA99E008BB2FD /* PhotosContainerResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = 450BDA1C217BA99E008BB2FD /* PhotosContainerResponse.json */; };
 		4551710C21791A3E00B9A2F0 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4551710B21791A3E00B9A2F0 /* Photo.swift */; };
 		4551710E21791FA700B9A2F0 /* PhotosResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4551710D21791FA700B9A2F0 /* PhotosResource.swift */; };
 		4551711221792C8F00B9A2F0 /* ApiRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4551711121792C8F00B9A2F0 /* ApiRequest.swift */; };
@@ -52,6 +54,8 @@
 		1D86DB3271690BBF4A380A7D /* Pods_flickr_findrTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_flickr_findrTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		29161699266E26EFA21C1ABC /* Pods-flickr-findrTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-flickr-findrTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-flickr-findrTests/Pods-flickr-findrTests.release.xcconfig"; sourceTree = "<group>"; };
 		450BDA17217B7636008BB2FD /* DataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTests.swift; sourceTree = "<group>"; };
+		450BDA19217B7F5D008BB2FD /* NetworkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkTests.swift; sourceTree = "<group>"; };
+		450BDA1C217BA99E008BB2FD /* PhotosContainerResponse.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = PhotosContainerResponse.json; sourceTree = "<group>"; };
 		4551710B21791A3E00B9A2F0 /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		4551710D21791FA700B9A2F0 /* PhotosResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosResource.swift; sourceTree = "<group>"; };
 		4551711121792C8F00B9A2F0 /* ApiRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiRequest.swift; sourceTree = "<group>"; };
@@ -111,6 +115,14 @@
 				1D86DB3271690BBF4A380A7D /* Pods_flickr_findrTests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		450BDA1B217BA97A008BB2FD /* Fixtures */ = {
+			isa = PBXGroup;
+			children = (
+				450BDA1C217BA99E008BB2FD /* PhotosContainerResponse.json */,
+			);
+			path = Fixtures;
 			sourceTree = "<group>";
 		};
 		45517119217A47FE00B9A2F0 /* ViewControllers */ = {
@@ -215,8 +227,10 @@
 		45C8E3852177FBDA0035F7F0 /* flickr-findrTests */ = {
 			isa = PBXGroup;
 			children = (
+				450BDA1B217BA97A008BB2FD /* Fixtures */,
 				45C8E3862177FBDA0035F7F0 /* ViewControllerTests.swift */,
 				450BDA17217B7636008BB2FD /* DataTests.swift */,
+				450BDA19217B7F5D008BB2FD /* NetworkTests.swift */,
 				45C8E3882177FBDA0035F7F0 /* Info.plist */,
 			);
 			path = "flickr-findrTests";
@@ -364,6 +378,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				450BDA1D217BA99E008BB2FD /* PhotosContainerResponse.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -508,6 +523,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				450BDA1A217B7F5D008BB2FD /* NetworkTests.swift in Sources */,
 				45C8E3872177FBDA0035F7F0 /* ViewControllerTests.swift in Sources */,
 				450BDA18217B7636008BB2FD /* DataTests.swift in Sources */,
 			);

@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct PhotosResource {
+class PhotosResource {
     let searchTerm: String
     let page: Int
     init(searchTerm: String, page: Int) {
