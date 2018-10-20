@@ -81,16 +81,8 @@ class SearchTableViewController: UITableViewController, PastSearchesProtocol, UI
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let searchQuery = searchBar.text else { return }
+        searchBar.endEditing(true)
         search(withQuery: searchQuery)
-    }
-    
-    private func search(withQuery searchQuery: String) {
-        let photosResource = PhotosResource(searchTerm: searchQuery)
-        let photosRequest = ApiRequest(resource: photosResource)
-        photosRequest.load { [weak self] photosContainer in
-            self?.photosContainer = photosContainer
-            self?.tableView.reloadData()
-        }
     }
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
@@ -107,10 +99,21 @@ class SearchTableViewController: UITableViewController, PastSearchesProtocol, UI
     func didSelectPastSearch(_ searchQuery: String) {
         pastSearchesIsHidden(true)
         searchBar.text = searchQuery
+        searchBar.endEditing(true)
         search(withQuery: searchQuery)
     }
     
     // MARK: - Helpers
+    
+    private func search(withQuery searchQuery: String) {
+        let photosResource = PhotosResource(searchTerm: searchQuery)
+        let photosRequest = ApiRequest(resource: photosResource)
+        // todo: show loader
+        photosRequest.load { [weak self] photosContainer in
+            self?.photosContainer = photosContainer
+            self?.tableView.reloadData()
+        }
+    }
     
     private func pastSearchesIsHidden(_ isHidden: Bool) {
         pastSearchesTableViewController.view.isHidden = isHidden
