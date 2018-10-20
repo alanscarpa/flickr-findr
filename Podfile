@@ -1,8 +1,10 @@
 platform :ios, '12.0'
+use_frameworks!
 
 target 'flickr-findr' do
-  use_frameworks!
-
   pod 'RealmSwift' 
+end
 
+target 'flickr-findrTests' do
+  pod 'RealmSwift'
 end

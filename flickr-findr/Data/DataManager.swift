@@ -10,8 +10,7 @@ import RealmSwift
 
 class DataManager {
     
-    static func addSearchTerm(_ searchTerm: SearchTerm) {
-        let realm = try! Realm()
+    static func addSearchTerm(_ searchTerm: SearchTerm, realm: Realm = try! Realm()) {
         if realm.objects(SearchTerm.self).filter({ $0.query == searchTerm.query }).isEmpty {
             try! realm.write {
                 realm.add(searchTerm)
@@ -19,8 +18,7 @@ class DataManager {
         }
     }
     
-    static func getSearchedTerms() -> [SearchTerm] {
-        let realm = try! Realm()
+    static func getSearchedTerms(_ realm: Realm = try! Realm()) -> [SearchTerm] {
         return realm.objects(SearchTerm.self).map{ $0 }.reversed()
     }
 }
