@@ -8,10 +8,10 @@
 
 import Foundation
 
-struct PhotosContainer: Decodable {
-    let page: Int
+class PhotosContainer: Decodable {
+    var page: Int
     let pages: Int
-    let photos: [Photo]
+    var photos: [Photo]
     
     enum CodingKeys: String, CodingKey {
         case photosWrapper = "photos"
@@ -20,7 +20,7 @@ struct PhotosContainer: Decodable {
         case photos = "photo"
     }
     
-    init(from decoder: Decoder) throws {
+    required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         let photosWrapper = try container.nestedContainer(keyedBy: CodingKeys.self, forKey: .photosWrapper)
         page = try photosWrapper.decode(Int.self, forKey: .page)

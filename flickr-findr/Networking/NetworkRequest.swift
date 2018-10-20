@@ -28,6 +28,7 @@ extension NetworkRequestProtocol {
     fileprivate func load(_ url: URL, withCompletion completion: @escaping (Object?) -> Void) -> URLSessionDataTask {
         let configuration = URLSessionConfiguration.default
         let session = URLSession(configuration: configuration, delegate: nil, delegateQueue: .main)
+        // todo: call on bg thread, return on main
         let task = session.dataTask(with: url) { (data, response, error) in
             if let error = error {
                 // todo: make neater

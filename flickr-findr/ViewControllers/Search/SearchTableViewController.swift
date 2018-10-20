@@ -69,6 +69,16 @@ class SearchTableViewController: UITableViewController, PastSearchesProtocol, UI
         return cell
     }
     
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        guard let photos = photos else { return }
+        guard let searchQuery = searchBar.text else { return }
+        guard let photosContainer = photosContainer else { return }
+        // todo make nice
+        if indexPath.row == photos.count - 1 {
+            search(withQuery: searchQuery, page: photosContainer.page + 1)
+        }
+    }
+    
     // MARK: - UITableViewDelegate
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -106,12 +116,18 @@ class SearchTableViewController: UITableViewController, PastSearchesProtocol, UI
     
     // MARK: - Helpers
     
-    private func search(withQuery searchQuery: String) {
-        let photosResource = PhotosResource(searchTerm: searchQuery)
+    private func search(withQuery searchQuery: String, page: Int = 1) {
+        let photosResource = PhotosResource(searchTerm: searchQuery, page: page)
         let photosRequest = ApiRequest(resource: photosResource)
         // todo: show loader
         photosRequest.load { [weak self] photosContainer in
-            self?.photosContainer = photosContainer
+            // todo: cleanup with mvvc?
+            if page == 1 {
+                self?.photosContainer = photosContainer
+            } else if let newPhotos = photosContainer?.photos, let newPage = photosContainer?.page {
+                self?.photosContainer?.page = newPage
+                self?.photosContainer?.photos.append(contentsOf: newPhotos)
+            }
             self?.tableView.reloadData()
         }
     }

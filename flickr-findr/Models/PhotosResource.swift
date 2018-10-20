@@ -10,8 +10,10 @@ import Foundation
 
 struct PhotosResource {
     let searchTerm: String
-    init(searchTerm: String) {
+    let page: Int
+    init(searchTerm: String, page: Int) {
         self.searchTerm = searchTerm
+        self.page = page
     }
 }
 
@@ -21,6 +23,6 @@ extension PhotosResource: ApiResource {
         return [URLQueryItem(name: "tags", value: searchTerm),
                 URLQueryItem(name: "method", value: "flickr.photos.search"),
                 URLQueryItem(name: "per_page", value: "25"),
-                URLQueryItem(name: "page", value: "1")]
+                URLQueryItem(name: "page", value: String(page))]
     }
 }
