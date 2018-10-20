@@ -86,7 +86,7 @@ class SearchTableViewController: UITableViewController, PastSearchesProtocol, UI
     }
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        // todo guard there are past searches
+        guard !DataManager.getSearchedTerms().isEmpty else { return }
         pastSearchesIsHidden(false)
     }
     

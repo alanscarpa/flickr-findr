@@ -14,7 +14,7 @@ protocol PastSearchesProtocol: class {
 
 class PastSearchesTableViewController: UITableViewController {
 
-    let pastSearches = ["dog", "cat", "bike", "frog"]
+    let pastSearches = DataManager.getSearchedTerms()
     weak var delegate: PastSearchesProtocol?
     
     override func viewDidLoad() {
@@ -30,13 +30,13 @@ class PastSearchesTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-        cell.textLabel?.text = pastSearches[indexPath.row]
+        cell.textLabel?.text = pastSearches[indexPath.row].query
         return cell
     }
     
     // MARK: - TableViewDelegate
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        delegate?.didSelectPastSearch(pastSearches[indexPath.row])
+        delegate?.didSelectPastSearch(pastSearches[indexPath.row].query)
     }
 }

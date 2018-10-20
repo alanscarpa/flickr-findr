@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0EAEF8D32FAA2053F96A08F1 /* Pods_flickr_findr.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 772585DD321FF46C76A35B13 /* Pods_flickr_findr.framework */; };
 		4551710C21791A3E00B9A2F0 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4551710B21791A3E00B9A2F0 /* Photo.swift */; };
 		4551710E21791FA700B9A2F0 /* PhotosResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4551710D21791FA700B9A2F0 /* PhotosResource.swift */; };
 		4551711221792C8F00B9A2F0 /* ApiRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4551711121792C8F00B9A2F0 /* ApiRequest.swift */; };
@@ -22,6 +23,8 @@
 		4551712E217A892E00B9A2F0 /* PhotoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4551712C217A892E00B9A2F0 /* PhotoViewController.xib */; };
 		45660CFB21783F64004C551A /* NetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45660CFA21783F64004C551A /* NetworkRequest.swift */; };
 		45C659D6217ABBE700096A9B /* PastSearchesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C659D5217ABBE700096A9B /* PastSearchesTableViewController.swift */; };
+		45C659D9217AD46C00096A9B /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C659D8217AD46C00096A9B /* DataManager.swift */; };
+		45C659DB217AD4EB00096A9B /* SearchTerm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C659DA217AD4EB00096A9B /* SearchTerm.swift */; };
 		45C8E3722177FBD70035F7F0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C8E3712177FBD70035F7F0 /* AppDelegate.swift */; };
 		45C8E3792177FBDA0035F7F0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 45C8E3782177FBDA0035F7F0 /* Assets.xcassets */; };
 		45C8E37C2177FBDA0035F7F0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45C8E37A2177FBDA0035F7F0 /* LaunchScreen.storyboard */; };
@@ -42,6 +45,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		03821EA6F1FF102918702FC4 /* Pods-flickr-findr.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-flickr-findr.debug.xcconfig"; path = "Pods/Target Support Files/Pods-flickr-findr/Pods-flickr-findr.debug.xcconfig"; sourceTree = "<group>"; };
 		4551710B21791A3E00B9A2F0 /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		4551710D21791FA700B9A2F0 /* PhotosResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosResource.swift; sourceTree = "<group>"; };
 		4551711121792C8F00B9A2F0 /* ApiRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiRequest.swift; sourceTree = "<group>"; };
@@ -57,6 +61,8 @@
 		4551712C217A892E00B9A2F0 /* PhotoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PhotoViewController.xib; sourceTree = "<group>"; };
 		45660CFA21783F64004C551A /* NetworkRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequest.swift; sourceTree = "<group>"; };
 		45C659D5217ABBE700096A9B /* PastSearchesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PastSearchesTableViewController.swift; sourceTree = "<group>"; };
+		45C659D8217AD46C00096A9B /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		45C659DA217AD4EB00096A9B /* SearchTerm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTerm.swift; sourceTree = "<group>"; };
 		45C8E36E2177FBD70035F7F0 /* flickr-findr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "flickr-findr.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		45C8E3712177FBD70035F7F0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		45C8E3782177FBDA0035F7F0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -68,6 +74,8 @@
 		45C8E395217818200035F7F0 /* PhotosContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosContainer.swift; sourceTree = "<group>"; };
 		45CE23832178242900C3C10E /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		45CE238521782F1600C3C10E /* APIKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKeys.swift; sourceTree = "<group>"; };
+		772585DD321FF46C76A35B13 /* Pods_flickr_findr.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_flickr_findr.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F9D8829A2CB5DFE6B8D8AE28 /* Pods-flickr-findr.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-flickr-findr.release.xcconfig"; path = "Pods/Target Support Files/Pods-flickr-findr/Pods-flickr-findr.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +83,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0EAEF8D32FAA2053F96A08F1 /* Pods_flickr_findr.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -88,6 +97,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		034214147495C18983DF8332 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				772585DD321FF46C76A35B13 /* Pods_flickr_findr.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		45517119217A47FE00B9A2F0 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -110,12 +127,22 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		45C659D7217AD40600096A9B /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				45C659D8217AD46C00096A9B /* DataManager.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
 		45C8E3652177FBD70035F7F0 = {
 			isa = PBXGroup;
 			children = (
 				45C8E3702177FBD70035F7F0 /* flickr-findr */,
 				45C8E3852177FBDA0035F7F0 /* flickr-findrTests */,
 				45C8E36F2177FBD70035F7F0 /* Products */,
+				7314F855CE66366E3C3B4434 /* Pods */,
+				034214147495C18983DF8332 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -132,6 +159,7 @@
 			isa = PBXGroup;
 			children = (
 				45C8E3712177FBD70035F7F0 /* AppDelegate.swift */,
+				45C659D7217AD40600096A9B /* Data */,
 				45C8E3942178180E0035F7F0 /* Models */,
 				45C8E391217815680035F7F0 /* Networking */,
 				45CE23822178242000C3C10E /* Utilities */,
@@ -170,6 +198,7 @@
 				4551710B21791A3E00B9A2F0 /* Photo.swift */,
 				4551710D21791FA700B9A2F0 /* PhotosResource.swift */,
 				45517113217A06EC00B9A2F0 /* ApiResource.swift */,
+				45C659DA217AD4EB00096A9B /* SearchTerm.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -184,6 +213,15 @@
 			path = Utilities;
 			sourceTree = "<group>";
 		};
+		7314F855CE66366E3C3B4434 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				03821EA6F1FF102918702FC4 /* Pods-flickr-findr.debug.xcconfig */,
+				F9D8829A2CB5DFE6B8D8AE28 /* Pods-flickr-findr.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -191,9 +229,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 45C8E38B2177FBDA0035F7F0 /* Build configuration list for PBXNativeTarget "flickr-findr" */;
 			buildPhases = (
+				BDF02F425A4E065A5D282C63 /* [CP] Check Pods Manifest.lock */,
 				45C8E36A2177FBD70035F7F0 /* Sources */,
 				45C8E36B2177FBD70035F7F0 /* Frameworks */,
 				45C8E36C2177FBD70035F7F0 /* Resources */,
+				5BAEB46078A6D4F2559308E2 /* [CP] Embed Pods Frameworks */,
+				FFFEC508EC71C0BB60CF0BE6 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -282,6 +323,62 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		5BAEB46078A6D4F2559308E2 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-flickr-findr/Pods-flickr-findr-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
+				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-flickr-findr/Pods-flickr-findr-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BDF02F425A4E065A5D282C63 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-flickr-findr-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FFFEC508EC71C0BB60CF0BE6 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-flickr-findr/Pods-flickr-findr-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		45C8E36A2177FBD70035F7F0 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -290,12 +387,14 @@
 				45CE23842178242900C3C10E /* Result.swift in Sources */,
 				45517128217A7C9800B9A2F0 /* PhotoCache.swift in Sources */,
 				45517121217A4FB000B9A2F0 /* SearchResultTableViewCell.swift in Sources */,
+				45C659DB217AD4EB00096A9B /* SearchTerm.swift in Sources */,
 				45517118217A109A00B9A2F0 /* ImageRequest.swift in Sources */,
 				45C8E396217818200035F7F0 /* PhotosContainer.swift in Sources */,
 				4551711221792C8F00B9A2F0 /* ApiRequest.swift in Sources */,
 				45CE238621782F1600C3C10E /* APIKeys.swift in Sources */,
 				4551710C21791A3E00B9A2F0 /* Photo.swift in Sources */,
 				4551712A217A877F00B9A2F0 /* RootViewController.swift in Sources */,
+				45C659D9217AD46C00096A9B /* DataManager.swift in Sources */,
 				45660CFB21783F64004C551A /* NetworkRequest.swift in Sources */,
 				4551710E21791FA700B9A2F0 /* PhotosResource.swift in Sources */,
 				45517125217A4FC700B9A2F0 /* SearchTableViewController.swift in Sources */,
@@ -454,11 +553,13 @@
 		};
 		45C8E38C2177FBDA0035F7F0 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 03821EA6F1FF102918702FC4 /* Pods-flickr-findr.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 98E8SVTQ29;
 				INFOPLIST_FILE = "flickr-findr/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -472,11 +573,13 @@
 		};
 		45C8E38D2177FBDA0035F7F0 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F9D8829A2CB5DFE6B8D8AE28 /* Pods-flickr-findr.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 98E8SVTQ29;
 				INFOPLIST_FILE = "flickr-findr/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
