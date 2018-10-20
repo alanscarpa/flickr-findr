@@ -21,7 +21,7 @@ class SearchTableViewController: UITableViewController, PastSearchesProtocol, UI
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Flickr Finder"
+        title = "Flickr Findr"
         setUpTableView()
         setUpSearchBar()
         setUpPastSearchesTableView()

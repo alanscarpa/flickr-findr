@@ -18,10 +18,33 @@ class flickr_findrTests: XCTestCase {
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
+    
+    func test_rootVC_has_one_VC() {
+        let rootVCUnderTest = RootViewController()
+        _ = rootVCUnderTest.view
+        XCTAssert(rootVCUnderTest.viewControllers.count == 1)
+    }
+    
+    func test_rootViewController_has_searchViewController_as_first_viewController() {
+        let rootVCUnderTest = RootViewController()
+        _ = rootVCUnderTest.view
+        XCTAssert(rootVCUnderTest.viewControllers.first is SearchTableViewController)
+    }
 
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func test_searchViewController_title_is_flickrFindr() {
+        let searchVCUnderTest = SearchTableViewController()
+        let navigationVC = UINavigationController()
+        navigationVC.viewControllers = [searchVCUnderTest]
+        _ = searchVCUnderTest.view
+        XCTAssertEqual(searchVCUnderTest.title, "Flickr Findr")
+    }
+    
+    func test_searchViewController_cellHeight() {
+        let searchVCUnderTest = SearchTableViewController()
+        let navigationVC = UINavigationController()
+        navigationVC.viewControllers = [searchVCUnderTest]
+        _ = searchVCUnderTest.view
+        XCTAssertEqual(searchVCUnderTest.tableView.rowHeight, 100)
     }
 
     func testPerformanceExample() {
