@@ -12,13 +12,15 @@ class DataManager {
     
     static func addSearchTerm(_ searchTerm: SearchTerm) {
         let realm = try! Realm()
-        try! realm.write {
-            realm.add(searchTerm)
+        if realm.objects(SearchTerm.self).filter({ $0.query == searchTerm.query }).isEmpty {
+            try! realm.write {
+                realm.add(searchTerm)
+            }
         }
     }
     
     static func getSearchedTerms() -> [SearchTerm] {
         let realm = try! Realm()
-        return realm.objects(SearchTerm.self).map{ $0 }
+        return realm.objects(SearchTerm.self).map{ $0 }.reversed()
     }
 }

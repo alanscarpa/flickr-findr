@@ -15,8 +15,4 @@ class SearchTerm: Object {
         self.init()
         self.query = query.lowercased()
     }
-    
-    override static func primaryKey() -> String? {
-        return "query"
-    }
 }

@@ -82,6 +82,7 @@ class SearchTableViewController: UITableViewController, PastSearchesProtocol, UI
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let searchQuery = searchBar.text else { return }
         searchBar.endEditing(true)
+        DataManager.addSearchTerm(SearchTerm(searchQuery))
         search(withQuery: searchQuery)
     }
     
@@ -116,6 +117,7 @@ class SearchTableViewController: UITableViewController, PastSearchesProtocol, UI
     }
     
     private func pastSearchesIsHidden(_ isHidden: Bool) {
+        pastSearchesTableViewController.tableView.reloadData()
         pastSearchesTableViewController.view.isHidden = isHidden
     }
     

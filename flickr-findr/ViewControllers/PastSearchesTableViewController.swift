@@ -14,7 +14,9 @@ protocol PastSearchesProtocol: class {
 
 class PastSearchesTableViewController: UITableViewController {
 
-    let pastSearches = DataManager.getSearchedTerms()
+    var pastSearches: [SearchTerm] {
+        return DataManager.getSearchedTerms()
+    }
     weak var delegate: PastSearchesProtocol?
     
     override func viewDidLoad() {
