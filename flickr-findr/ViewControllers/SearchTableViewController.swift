@@ -8,21 +8,23 @@
 
 import UIKit
 
-class SearchTableViewController: UITableViewController, UISearchBarDelegate {
+class SearchTableViewController: UITableViewController, PastSearchesProtocol, UISearchBarDelegate {
     
-    private var photosContainer: PhotosContainer?
+    @IBOutlet weak var searchBar: UISearchBar!
+
     private let tableViewReuseIdentifier = SearchResultTableViewCell.nibName
+    private var pastSearchesTableViewController = PastSearchesTableViewController()
+    private var photosContainer: PhotosContainer?
     private var photos: [Photo]? {
         return photosContainer?.photos
     }
-    
-    @IBOutlet weak var searchBar: UISearchBar!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Flickr Finder"
         setUpTableView()
         setUpSearchBar()
+        setUpPastSearchesTableView()
     }
     
     // MARK: - Setup
@@ -40,6 +42,19 @@ class SearchTableViewController: UITableViewController, UISearchBarDelegate {
         let textFieldInsideSearchBar = searchBar.value(forKey: "searchField") as? UITextField
         textFieldInsideSearchBar?.textColor = .white
         searchBar.delegate = self
+    }
+    
+    private func setUpPastSearchesTableView() {
+        addChild(pastSearchesTableViewController)
+        var searchesFrame = tableView.frame
+        searchesFrame.size.height = tableView.frame.size.height - searchBar.frame.size.height - navigationController!.navigationBar.frame.size.height
+        searchesFrame.origin.y = searchesFrame.origin.y + searchBar.frame.size.height
+        pastSearchesTableViewController.view.frame = searchesFrame
+        view.addSubview(pastSearchesTableViewController.tableView)
+        pastSearchesTableViewController.tableView.layer.zPosition = 1
+        pastSearchesTableViewController.didMove(toParent: self)
+        pastSearchesTableViewController.delegate = self
+        pastSearchesIsHidden(true)
     }
 
     // MARK: - Table view data source
@@ -76,6 +91,29 @@ class SearchTableViewController: UITableViewController, UISearchBarDelegate {
             self?.photosContainer = photosContainer
             self?.tableView.reloadData()
         }
+    }
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        // todo guard there are past searches
+        pastSearchesIsHidden(false)
+    }
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        pastSearchesIsHidden(true)
+    }
+    
+    // MARK: - PastSearchesProtocol
+    
+    func didSelectPastSearch(_ searchQuery: String) {
+        pastSearchesIsHidden(true)
+        searchBar.text = searchQuery
+        search(withQuery: searchQuery)
+    }
+    
+    // MARK: - Helpers
+    
+    private func pastSearchesIsHidden(_ isHidden: Bool) {
+        pastSearchesTableViewController.view.isHidden = isHidden
     }
     
 }
