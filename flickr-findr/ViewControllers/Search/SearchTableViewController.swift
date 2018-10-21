@@ -120,21 +120,23 @@ class SearchTableViewController: UITableViewController, PastSearchesProtocol, UI
         let photosRequest = ApiRequest(resource: photosResource)
         if showSpinner { SwiftSpinner.show("Loading") }
         photosRequest.load { [weak self] result in
-            // todo: cleanup with mvvc?
+            SwiftSpinner.hide()
             switch result {
             case .success(let photosContainer):
-                if page == 1 {
-                    self?.photosContainer = photosContainer
-                } else if let newPhotos = photosContainer?.photos, let newPage = photosContainer?.page {
-                    self?.photosContainer?.page = newPage
-                    self?.photosContainer?.photos.append(contentsOf: newPhotos)
-                }
+                self?.updatePhotos(photosContainer)
             case .failure(let error):
                 let alertVC = UIAlertController.createSimpleAlert(withTitle: error.title, message: error.localizedDescription)
                 self?.present(alertVC, animated: true, completion: nil)
             }
-            SwiftSpinner.hide()
             self?.tableView.reloadData()
+        }
+    }
+    
+    private func updatePhotos(_ newPhotosContainer: PhotosContainer?) {
+        if photosContainer == nil {
+            photosContainer = newPhotosContainer
+        } else {
+            photosContainer?.update(with: newPhotosContainer)
         }
     }
     
