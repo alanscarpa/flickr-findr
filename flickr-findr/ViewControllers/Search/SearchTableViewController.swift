@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftSpinner
 
 class SearchTableViewController: UITableViewController, PastSearchesProtocol, UISearchBarDelegate {
     
@@ -75,7 +76,7 @@ class SearchTableViewController: UITableViewController, PastSearchesProtocol, UI
         guard let photosContainer = photosContainer else { return }
         // todo make nice
         if indexPath.row == photos.count - 1 {
-            search(withQuery: searchQuery, page: photosContainer.page + 1)
+            search(withQuery: searchQuery, page: photosContainer.page + 1, showSpinner: false)
         }
     }
     
@@ -116,10 +117,10 @@ class SearchTableViewController: UITableViewController, PastSearchesProtocol, UI
     
     // MARK: - Helpers
     
-    private func search(withQuery searchQuery: String, page: Int = 1) {
+    private func search(withQuery searchQuery: String, page: Int = 1, showSpinner: Bool = true) {
         let photosResource = PhotosResource(searchTerm: searchQuery, page: page)
         let photosRequest = ApiRequest(resource: photosResource)
-        // todo: show loader
+        if showSpinner { SwiftSpinner.show("Loading") }
         photosRequest.load { [weak self] photosContainer in
             // todo: cleanup with mvvc?
             if page == 1 {
@@ -128,6 +129,7 @@ class SearchTableViewController: UITableViewController, PastSearchesProtocol, UI
                 self?.photosContainer?.page = newPage
                 self?.photosContainer?.photos.append(contentsOf: newPhotos)
             }
+            SwiftSpinner.hide()
             self?.tableView.reloadData()
         }
     }

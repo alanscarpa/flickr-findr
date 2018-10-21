@@ -3,6 +3,7 @@ use_frameworks!
 
 target 'flickr-findr' do
   pod 'RealmSwift' 
+  pod 'SwiftSpinner'
 end
 
 target 'flickr-findrTests' do
