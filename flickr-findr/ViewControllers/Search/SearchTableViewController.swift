@@ -71,11 +71,9 @@ class SearchTableViewController: UITableViewController, PastSearchesProtocol, UI
     }
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        guard let photos = photos else { return }
         guard let searchQuery = searchBar.text else { return }
         guard let photosContainer = photosContainer else { return }
-        // todo make nice
-        if indexPath.row == photos.count - 1 {
+        if isLastRow(indexPath) {
             search(withQuery: searchQuery, page: photosContainer.page + 1, showSpinner: false)
         }
     }
@@ -144,6 +142,11 @@ class SearchTableViewController: UITableViewController, PastSearchesProtocol, UI
         pastSearchesTableViewController.tableView.reloadData()
         pastSearchesTableViewController.view.isHidden = isHidden
         tableView.isScrollEnabled = isHidden
+    }
+    
+    private func isLastRow(_ indexPath: IndexPath) -> Bool {
+        guard let photos = photos else { return false }
+        return indexPath.row == photos.count - 1
     }
     
 }

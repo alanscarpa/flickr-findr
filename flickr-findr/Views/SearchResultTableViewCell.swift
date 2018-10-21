@@ -32,31 +32,35 @@ class SearchResultTableViewCell: UITableViewCell, FFTableViewCell {
     }
     
     func updateUI() {
-        // todo: this could be more concise
+        setTitle()
+        setPhoto()
+    }
+    
+    private func setTitle() {
         if let title = photo?.title, !title.isEmpty{
             titleLabel.text = title
         } else {
             titleLabel.text = "Untitled"
         }
-        if let url = photo?.url {
-            if let downloadedImage = ImageCache.shared.image(fromURL: url) {
-                photoImageView.image = downloadedImage
-            } else {
-                imageRequest = ImageRequest(url: url)
-                imageRequest?.load { [weak self] result in
-                    switch result {
-                    case .success(let image):
-                        guard let image = image else { return }
-                        ImageCache.shared.put(image: image, withURL: url)
-                        self?.photoImageView?.image = image
-                    case .failure(let error):
-                        self?.photoImageView.backgroundColor = .red
-                        print(error.description)
-                    }
+    }
+    
+    private func setPhoto() {
+        guard let url = photo?.url else { return }
+        if let downloadedImage = ImageCache.shared.image(fromURL: url) {
+            photoImageView.image = downloadedImage
+        } else {
+            imageRequest = ImageRequest(url: url)
+            imageRequest?.load { [weak self] result in
+                switch result {
+                case .success(let image):
+                    guard let image = image else { return }
+                    ImageCache.shared.put(image: image, withURL: url)
+                    self?.photoImageView?.image = image
+                case .failure(let error):
+                    self?.photoImageView.backgroundColor = .red
+                    print(error.description)
                 }
             }
-        } else {
-            photoImageView.image = nil
         }
     }
 }
