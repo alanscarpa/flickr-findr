@@ -143,6 +143,7 @@ class SearchTableViewController: UITableViewController, PastSearchesProtocol, UI
     private func pastSearchesIsHidden(_ isHidden: Bool) {
         pastSearchesTableViewController.tableView.reloadData()
         pastSearchesTableViewController.view.isHidden = isHidden
+        tableView.isScrollEnabled = isHidden
     }
     
 }
