@@ -121,13 +121,19 @@ class SearchTableViewController: UITableViewController, PastSearchesProtocol, UI
         let photosResource = PhotosResource(searchTerm: searchQuery, page: page)
         let photosRequest = ApiRequest(resource: photosResource)
         if showSpinner { SwiftSpinner.show("Loading") }
-        photosRequest.load { [weak self] photosContainer in
+        photosRequest.load { [weak self] result in
             // todo: cleanup with mvvc?
-            if page == 1 {
-                self?.photosContainer = photosContainer
-            } else if let newPhotos = photosContainer?.photos, let newPage = photosContainer?.page {
-                self?.photosContainer?.page = newPage
-                self?.photosContainer?.photos.append(contentsOf: newPhotos)
+            switch result {
+            case .success(let photosContainer):
+                if page == 1 {
+                    self?.photosContainer = photosContainer
+                } else if let newPhotos = photosContainer?.photos, let newPage = photosContainer?.page {
+                    self?.photosContainer?.page = newPage
+                    self?.photosContainer?.photos.append(contentsOf: newPhotos)
+                }
+            case .failure(let error):
+                let alertVC = UIAlertController.createSimpleAlert(withTitle: error.title, message: error.localizedDescription)
+                self?.present(alertVC, animated: true, completion: nil)
             }
             SwiftSpinner.hide()
             self?.tableView.reloadData()

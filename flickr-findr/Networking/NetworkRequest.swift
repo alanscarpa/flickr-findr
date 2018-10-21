@@ -19,36 +19,40 @@ class NetworkRequest {
 
 protocol NetworkRequestProtocol {
     associatedtype Object
-    func load(withCompletion completion: @escaping (Object?) -> Void)
+    func load(withCompletion completion: @escaping (NetworkResult<Object?>) -> Void)
     func decode(_ data: Data) -> Object?
     func cancel()
 }
 
 extension NetworkRequestProtocol {
-    fileprivate func load(_ url: URL, withCompletion completion: @escaping (Object?) -> Void) -> URLSessionDataTask {
-        let configuration = URLSessionConfiguration.default
-        let session = URLSession(configuration: configuration, delegate: nil, delegateQueue: .main)
-        // todo: call on bg thread, return on main
-        let task = session.dataTask(with: url) { (data, response, error) in
+    fileprivate func load(_ url: URL, withCompletion completion: @escaping (NetworkResult<Object?>) -> Void) -> URLSessionDataTask {
+        let session = URLSession(configuration: URLSessionConfiguration.default,
+                                 delegate: nil,
+                                 delegateQueue: .main)
+        let task = session.dataTask(with: url) { data, response, error in
             if let error = error {
-                // todo: make neater
-                if (error as NSError).code == -999 {
-                    // no-op.  This is called when we cancel a task.
-                } else {
-                    print(error.localizedDescription)
-                }
+                completion(self.handleError(error))
             } else {
-                guard let data = data else { completion(nil); return }
-                completion(self.decode(data))
+                guard let data = data else { completion(.failure(.blankDataReturned)); return }
+                completion(.success(self.decode(data)))
             }
         }
         task.resume()
         return task
     }
+    
+    fileprivate func handleError(_ error: Error) -> (NetworkResult<Object?>) {
+        if (error as NSError).code == -999 {
+            // -999 is called when we cancel download task.  no-op
+            return .success(nil)
+        } else {
+            return .failure(FFError.externalError(error.localizedDescription))
+        }
+    }
 }
 
 extension ApiRequest: NetworkRequestProtocol {
-    func load(withCompletion completion: @escaping (Resource.Model?) -> Void) {
+    func load(withCompletion completion: @escaping (NetworkResult<Resource.Model?>) -> Void) {
         dataTask = load(resource.url, withCompletion: completion)
     }
     
@@ -58,7 +62,7 @@ extension ApiRequest: NetworkRequestProtocol {
 }
 
 extension ImageRequest: NetworkRequestProtocol {
-    func load(withCompletion completion: @escaping (UIImage?) -> Void) {
+    func load(withCompletion completion: @escaping (NetworkResult<UIImage?>) -> Void) {
         dataTask = load(url, withCompletion: completion)
     }
     

@@ -6,8 +6,7 @@
 //  Copyright © 2018 alanscarpa. All rights reserved.
 //
 
-// todo: implement
-public enum Result<T> {
+enum NetworkResult<T> {
     case success(T)
-    case failure(Error)
+    case failure(FFError)
 }

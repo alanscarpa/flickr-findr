@@ -21,18 +21,24 @@ class PhotoViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if let url = photo?.url {
-            if let downloadedImage = ImageCache.shared.image(fromURL: url) {
-                photoImageView.image = downloadedImage
-            } else {
-                ImageRequest(url: url).load { [weak self] image in
+        loadPhoto()
+    }
+    
+    private func loadPhoto() {
+        guard let url = photo?.url else { return }
+        if let downloadedImage = ImageCache.shared.image(fromURL: url) {
+            photoImageView.image = downloadedImage
+        } else {
+            ImageRequest(url: url).load { [weak self] result in
+                switch result {
+                case .success(let image):
                     guard let image = image else { return }
-                    ImageCache.shared.put(image: image, withURL: url)
                     self?.photoImageView?.image = image
+                case .failure(let error):
+                    let alertVC = UIAlertController.createSimpleAlert(withTitle: error.title, message: error.description)
+                    self?.present(alertVC, animated: true, completion: nil)
                 }
             }
-        } else {
-            photoImageView.image = nil
         }
     }
 

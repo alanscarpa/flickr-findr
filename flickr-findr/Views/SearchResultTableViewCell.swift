@@ -43,10 +43,16 @@ class SearchResultTableViewCell: UITableViewCell, FFTableViewCell {
                 photoImageView.image = downloadedImage
             } else {
                 imageRequest = ImageRequest(url: url)
-                imageRequest?.load { [weak self] image in
-                    guard let image = image else { return }
-                    ImageCache.shared.put(image: image, withURL: url)
-                    self?.photoImageView?.image = image
+                imageRequest?.load { [weak self] result in
+                    switch result {
+                    case .success(let image):
+                        guard let image = image else { return }
+                        ImageCache.shared.put(image: image, withURL: url)
+                        self?.photoImageView?.image = image
+                    case .failure(let error):
+                        self?.photoImageView.backgroundColor = .red
+                        print(error.description)
+                    }
                 }
             }
         } else {
