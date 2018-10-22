@@ -116,6 +116,7 @@ class SearchTableViewController: UITableViewController, PastSearchesProtocol, UI
     // MARK: - Helpers
     
     private func search(withQuery searchQuery: String, page: Int = 1, showSpinner: Bool = true) {
+        guard !searchQuery.isEmpty else { showBlankSearchAlert(); return }
         let photosResource = PhotosResource(searchTerm: searchQuery, page: page)
         let photosRequest = ApiRequest(resource: photosResource)
         if showSpinner { SwiftSpinner.show("Loading") }
@@ -125,8 +126,7 @@ class SearchTableViewController: UITableViewController, PastSearchesProtocol, UI
             case .success(let photosContainer):
                 self?.updatePhotos(photosContainer)
             case .failure(let error):
-                let alertVC = UIAlertController.createSimpleAlert(withTitle: error.title, message: error.localizedDescription)
-                self?.present(alertVC, animated: true, completion: nil)
+                self?.showAlertWithError(error)
             }
             self?.tableView.reloadData()
         }
@@ -149,5 +149,15 @@ class SearchTableViewController: UITableViewController, PastSearchesProtocol, UI
     private func isLastRow(_ indexPath: IndexPath) -> Bool {
         guard let photos = photos else { return false }
         return indexPath.row == photos.count - 1
+    }
+    
+    private func showAlertWithError(_ error: FFError) {
+        let alertVC = UIAlertController.createSimpleAlert(withTitle: error.title, message: error.description)
+        present(alertVC, animated: true, completion: nil)
+    }
+    
+    private func showBlankSearchAlert() {
+        let alertVC = UIAlertController.createSimpleAlert(withTitle: "Uh-oh!", message: "You need to enter a search term!")
+        present(alertVC, animated: true, completion: nil)
     }
 }

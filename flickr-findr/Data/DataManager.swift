@@ -11,6 +11,7 @@ import RealmSwift
 class DataManager {
     
     static func addSearchTerm(_ searchTerm: SearchTerm, realm: Realm = try! Realm()) {
+        guard !searchTerm.query.isEmpty else { return }
         if realm.objects(SearchTerm.self).filter({ $0.query == searchTerm.query }).isEmpty {
             try! realm.write {
                 realm.add(searchTerm)
