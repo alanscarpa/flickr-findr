@@ -38,7 +38,7 @@
 		45C8E37C2177FBDA0035F7F0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45C8E37A2177FBDA0035F7F0 /* LaunchScreen.storyboard */; };
 		45C8E3872177FBDA0035F7F0 /* ViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C8E3862177FBDA0035F7F0 /* ViewControllerTests.swift */; };
 		45C8E396217818200035F7F0 /* PhotosContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C8E395217818200035F7F0 /* PhotosContainer.swift */; };
-		45CE23842178242900C3C10E /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45CE23832178242900C3C10E /* Result.swift */; };
+		45CE23842178242900C3C10E /* NetworkResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45CE23832178242900C3C10E /* NetworkResult.swift */; };
 		45CE238621782F1600C3C10E /* APIKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45CE238521782F1600C3C10E /* APIKeys.swift */; };
 /* End PBXBuildFile section */
 
@@ -90,7 +90,7 @@
 		45C8E3862177FBDA0035F7F0 /* ViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerTests.swift; sourceTree = "<group>"; };
 		45C8E3882177FBDA0035F7F0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		45C8E395217818200035F7F0 /* PhotosContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosContainer.swift; sourceTree = "<group>"; };
-		45CE23832178242900C3C10E /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
+		45CE23832178242900C3C10E /* NetworkResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkResult.swift; sourceTree = "<group>"; };
 		45CE238521782F1600C3C10E /* APIKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKeys.swift; sourceTree = "<group>"; };
 		772585DD321FF46C76A35B13 /* Pods_flickr_findr.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_flickr_findr.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9D8829A2CB5DFE6B8D8AE28 /* Pods-flickr-findr.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-flickr-findr.release.xcconfig"; path = "Pods/Target Support Files/Pods-flickr-findr/Pods-flickr-findr.release.xcconfig"; sourceTree = "<group>"; };
@@ -280,7 +280,7 @@
 		45CE23822178242000C3C10E /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				45CE23832178242900C3C10E /* Result.swift */,
+				45CE23832178242900C3C10E /* NetworkResult.swift */,
 				45CE238521782F1600C3C10E /* APIKeys.swift */,
 				45517127217A7C9800B9A2F0 /* PhotoCache.swift */,
 				450BDA1E217CE5FE008BB2FD /* FFError.swift */,
@@ -521,7 +521,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				45CE23842178242900C3C10E /* Result.swift in Sources */,
+				45CE23842178242900C3C10E /* NetworkResult.swift in Sources */,
 				450BDA1F217CE5FE008BB2FD /* FFError.swift in Sources */,
 				450BDA24217CE8D2008BB2FD /* UIAlertController+FF.swift in Sources */,
 				45517128217A7C9800B9A2F0 /* PhotoCache.swift in Sources */,

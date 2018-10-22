@@ -41,5 +41,4 @@ class PhotoViewController: UIViewController {
             }
         }
     }
-
 }

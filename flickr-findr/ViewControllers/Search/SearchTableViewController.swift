@@ -150,5 +150,4 @@ class SearchTableViewController: UITableViewController, PastSearchesProtocol, UI
         guard let photos = photos else { return false }
         return indexPath.row == photos.count - 1
     }
-    
 }

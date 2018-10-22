@@ -14,5 +14,4 @@ class RootViewController: UINavigationController {
         super.viewDidLoad()
         setViewControllers([SearchTableViewController()], animated: true)
     }
-
 }
